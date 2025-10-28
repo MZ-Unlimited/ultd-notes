@@ -7,7 +7,7 @@ router = APIRouter(responses={404: {"description": "Not found"}})
 
 
 @router.get("/_meta", response_class=JSONResponse)
-async def root() -> JSONResponse:
+async def meta() -> JSONResponse:
     return JSONResponse(
         {
             "name": settings.APP_NAME,
@@ -21,3 +21,12 @@ async def root() -> JSONResponse:
 @router.get("/healthcheck")
 async def health_check():
     return {"status": "healthy"}
+
+
+@router.get("/")
+async def root():
+    return {
+        "Name": "Fabio Marzullo",
+        "Email": "fabio@ultd.ai",
+        "Description": "This is a demo environment for Golden City Project",
+    }

@@ -91,7 +91,7 @@ async def update_note(request: Request, note_schema: NoteSchema) -> JSONResponse
 
 
 @router.delete("/{note_id}", response_class=JSONResponse)
-async def delete_school(request: Request, note_id: int) -> JSONResponse:
+async def delete_note(request: Request, note_id: int) -> JSONResponse:
     response_json = const.SUCCESS_JSON
     try:
         if not note_id:

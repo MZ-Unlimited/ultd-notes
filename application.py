@@ -4,7 +4,7 @@
 import logging
 from typing import Any
 
-from fastapi import Depends, FastAPI, Request
+from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
 from starlette.responses import JSONResponse
@@ -24,12 +24,18 @@ app = FastAPI(
     title=settings.APP_NAME,
     description=settings.APP_DESCRIPTION,
     version=settings.APP_VERSION,
-    dependencies=[Depends(needs_api_key), Depends(get_db_manager)],
+    dependencies=[Depends(get_db_manager)],
 )
-
-app.include_router(note_router)
-app.include_router(root_router)
 app.add_middleware(RequestMiddleware)
+
+keyed_routes = APIRouter(dependencies=[Depends(needs_api_key)])
+open_routes = APIRouter()
+
+keyed_routes.include_router(note_router)
+open_routes.include_router(root_router)
+
+app.include_router(keyed_routes)
+app.include_router(open_routes)
 
 
 @app.middleware("http")
