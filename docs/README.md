@@ -19,7 +19,7 @@ Notes API.
       - This will install the tasks manager.
     - If there is no `requiremenst.txt` file in the `requirements` folder:
       - Run `inv pip-compile` this will compile the `requirements.txt` file.
-    - Run `pip install -Rrrequirements/requirements.txt`.
+    - Run `pip install -r requirements/requirements.txt`.
     - If everything worked as expected, you will enter the virtual environment context.
 
 ## Configuration
@@ -52,9 +52,11 @@ Notes API.
 ## Api
   - The API is built under the folder `services`. Feel free to look around and get a sense of how it is built.
     - In order to use the endpoints that are available you will need to add `x-api-key=API_KEY` to your header call.
+    - Use this API Key `52b23c0a-cf59-48ef-be2f-921c45377ac8`
 
-
-## DB conf
+## Database configuration
   - If you need to access the database, you can do so by installing a PostgreSQL client/IDE in your computer.
   - Use `host=localhost`, `port=15440`, `user=postgres`, `pwd=AS_DEFINED_IN_YOU_ENV_FILE`.
   - Please remember that you must configure is it your `.env` file.
+
+## The API is deployed at https://notes.ultd.ai
