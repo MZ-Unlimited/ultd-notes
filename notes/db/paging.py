@@ -23,6 +23,7 @@ async def get_async_page_info(
         db_manager: Database manager instance
     """
     async with TaskGroup() as task_group:
+
         async def get_count():
             async with db_manager.transaction() as session:
                 return await session.scalar(
